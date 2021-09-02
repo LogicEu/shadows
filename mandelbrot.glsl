@@ -6,7 +6,7 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
-#define SAMPLES 4
+#define SAMPLES 2
 #define ITERS 100
 
 const float offsetsD = .35;
@@ -39,21 +39,22 @@ float testMandelbrot(vec2 coord)
 
 vec4 mapColor(float mcol) 
 {
-    vec3 c = vec3(sin(u_time), 0.0, cos(u_time));
+    vec3 c = vec3(sin(u_time), sin(u_time * 0.333333), cos(u_time * 0.5));
     return vec4(0.5 + 0.5 * cos(2.7 + mcol * 30.0 + c), 1.0);
 }
 
 void main(void) 
 {
     //const vec2 zoomP = vec2(-1.1553,0.4945105);
-    const vec2 zoomP = vec2(-.7457117, .186142);
+    const vec2 zoomP = vec2(-.771899, .186142);
     const float zoomTime = 100.0;
-    float tTime = 9.0 + 0.1*abs(mod(u_time + zoomTime, zoomTime * 2.0) - zoomTime);
+    float tTime = 9.0 + 1.0 * abs(mod(u_time + zoomTime, zoomTime * 2.0) - zoomTime);
     tTime = (145.5 / (.0005 * pow(tTime, 5.0)));
     vec2 aspect = vec2(1.0, u_resolution.y / u_resolution.x);
     vec2 mouse = u_mouse.xy / u_resolution.xy;
     
-    vec4 outs = vec4(cos(u_time), sin(u_time), 0.0, 1.0);
+    vec4 outs = vec4(0.0);
+    //vec4 outs = vec4(cos(u_time), sin(u_time * 0.5), cos(u_time * 0.33333), 1.0);
     
     for(int i = 0; i < SAMPLES; i++) {        
         vec2 fragment = (gl_FragCoord.xy + offsets[i])/u_resolution.xy;    
