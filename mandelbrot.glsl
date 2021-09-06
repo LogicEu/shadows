@@ -46,7 +46,11 @@ vec4 mapColor(float mcol)
 void main(void) 
 {
     //const vec2 zoomP = vec2(-1.1553,0.4945105);
-    const vec2 zoomP = vec2(-.771899, .186142);
+    //const vec2 zoomP = vec2(-.771899, .186142);
+    //const vec2 zoomP = vec2(-1.55, 0.00);
+    //const vec2 zoomP = vec2(-1.7999, 0.0);
+    const vec2 zoomP = vec2(.2880, 0.01880);
+    //const vec2 zoomP = vec2(-1.78 ,0.0);
     const float zoomTime = 100.0;
     float tTime = 9.0 + 1.0 * abs(mod(u_time + zoomTime, zoomTime * 2.0) - zoomTime);
     tTime = (145.5 / (.0005 * pow(tTime, 5.0)));
